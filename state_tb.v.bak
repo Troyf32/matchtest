@@ -1,0 +1,17 @@
+`timescale 1ns/1ns
+module state_tb();
+reg clk, rst, start;
+reg sorted_rdy;
+reg [24*10-1:0] candidate_angle_buffer;							
+wire [2:0] state;
+wire [2:0] stage;
+
+always#10 clk = ~clk;
+initial
+begin
+	
+
+
+end
+
+endmodule

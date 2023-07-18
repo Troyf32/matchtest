@@ -1,0 +1,19 @@
+module tau_cal #(parameter N=21, parameter M=13)(rE, rI, rI_shift, res_rdy, clk, rst, tau)
+input 
+output 
+
+divider_man #(.N(N), .M(M))
+	 u_divider(.clk (clk),
+				  .rstn (rst),
+				  .data_rdy (1'b1),
+				  .dividend (rI_shift),
+				  .divisor (rE),
+				  .res_rdy (res_rdy),
+				  .merchant (tau_reg),
+				  .remainder ());
+
+assign rI_shift = rI << 8;
+assign tau = tau_reg[7:0];
+
+
+endmodule 

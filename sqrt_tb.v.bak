@@ -1,0 +1,18 @@
+`timescale 1ns/1ns
+module sqrt_tb();
+
+
+
+
+sqrt_alt_sqrt_block_9kb
+	( 
+	aclr,
+	clken,
+	clock,
+	rad,
+	root_result) ;
+	input   aclr;
+	input   clken;
+	input   clock;
+	input   [25:0]  rad;
+	output   [24:0]  root_result;

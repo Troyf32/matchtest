@@ -1,0 +1,19 @@
+module tau_divisor(rI, rE, clk, tau);
+input clk;
+input [12:0] rI, rE;			// 512  取小數點後4bit
+input [13:0] xc, yc;			// 1048 取小數點後4bit xc 0~648 yc 0~488
+input [11:0] theta, phi; 	// 4096
+reg [11:0] alpha;				// 4096
+reg [7:0] tau_reg;			// 取小數點後8bit
+wire [7:0] tau;
+wire [9:0] c_th, c_al, s_th, c_ph, s_al, s_ph;
+
+
+assign 
+
+always@(posedge clk)
+begin
+	tau_reg <= rI/rE;
+end
+				
+endmodule

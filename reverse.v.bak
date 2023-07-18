@@ -1,0 +1,7 @@
+module reverse(pos, neg);
+input [9:0] pos;
+output [9:0] neg;
+
+assign neg= ~pos+1'b1;
+
+endmodule

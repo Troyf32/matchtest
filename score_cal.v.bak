@@ -1,0 +1,57 @@
+module score_cal#(
+						parameter width = 8,
+						parameter tanh_ex = width+11
+						)
+					 (
+					  input [width*9-1:0] point_val,  // out4, out3, out2, out1, in4, in3, in2, in1, boundary    
+					  input clk,
+					  input rst,
+					  output reg [width+11:0] score // 取小數點後8bit
+					  );  
+
+wire [width+2:0] out3, out5, outside, out4_d50, in3, in5;
+wire [width+10:0] out5_shift;
+wire [9:0] tanh_val, tanh_val_add;
+wire res_rdy;
+wire [width+10:0] pre_score, pre_score_line;
+wire [width+19:0] score_shift;
+
+assign out3 = {{3'b0},point_val[width*8-1:width*7]} + {{3'b0},point_val[width*7-1:width*6]} + {{3'b0},point_val[width*6-1:width*5]};
+assign in3  = {{3'b0},point_val[width*4-1:width*3]} + {{3'b0},point_val[width*3-1:width*2]} + {{3'b0},point_val[width*2-1:width]};
+assign outside = out3 + {{3'b0},point_val[width-1:0]};
+assign out4_d50 = {2'b0,outside[width+2:2]} - 'd50;
+assign out5 = {out3[width+1:0],1'b0} + {{3'b0},point_val[width*9-1:width*8]} + {{3'b0},point_val[width-1:0]} + 1'b1;
+assign in5 = {in3[width+1:0],1'b0} + {{3'b0},point_val[width*5-1:width*4]} + {{3'b0},point_val[width-1:0]} + 1'b1;
+
+assign out5_shift = out5 << 8;
+assign tanh_val_add = tanh_val + 10'd256;
+assign score_shift = {10'b0,pre_score} * {{tanh_ex{1'b0}},tanh_val_add};
+
+always@(posedge clk)
+begin
+	score <= score_shift[width+19:8];
+end
+
+tanh_LUT tl(.address(out4_d50[7:0]), //[7:0]
+			   .clock(clk),
+			   .q(tanh_val));
+
+divider_man #(.N(width+11), .M(width+3)) //N:被除數 M:除數 取到小數後8bit
+	 u_divider(.clk (clk),
+				  .rstn (rst),
+				  .data_rdy (1'b1),
+				  .dividend (out5_shift),
+				  .divisor (in5),
+				  .res_rdy (res_rdy),
+				  .merchant (pre_score_line),
+				  .remainder ());
+				  
+MUX #(.m(width+11),// tem_degree width+10 bit
+      .n(2),     // 2 input
+      .width(1)) // 1bit select
+  scm(.pdata({{tanh_ex{1'b0}},pre_score_line}),
+      .s(~res_rdy),
+      .data_o(pre_score));
+
+
+endmodule					  

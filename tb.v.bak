@@ -1,0 +1,15 @@
+`timescale 1ns/1ns
+module tb();
+reg [11:0] degree;
+wire [1:0] degree_range;
+
+degree_range dr(.degree(degree), 
+					 .degree_range(degree_range));
+
+initial
+begin
+	
+
+end
+
+endmodule

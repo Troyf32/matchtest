@@ -1,0 +1,22 @@
+`timescale 1ns/1ns
+module reverse_tb();
+reg [9:0] unsign;
+wire [9:0] sign;
+
+reverse us(.unsign(unsign),
+						.sign(sign));
+
+initial
+begin
+	unsign = 9'b110010001;
+	#10
+	unsign = 9'b110010010;
+	#10
+	unsign = 9'b110010011;
+	#10
+	unsign = 9'b110010100;
+	#10
+	unsign = 9'b110010101;
+end
+					
+endmodule

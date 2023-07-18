@@ -1,0 +1,175 @@
+module sort_5(clk, 
+				  rst,
+				  theta,
+				  phi,
+				  score_rdy,
+				  score_alpha_num,
+				  score_buffer,
+				  score,
+				  compare_num,
+				  angle_buffer);
+				
+input clk, rst, score_rdy;
+input [11:0] theta;
+input [11:0] phi;
+input [8:0] score_alpha_num;
+input [7:0] score;
+input [3:0] compare_num;
+reg [7:0] score_tem;
+reg [2:0] stall_cnt; //use for waiting
+wire compare_rdy;
+wire [3:0] index;
+reg[8:0] score_alpha_cnt;
+reg compare_data_rdy;
+
+reg [8*10-1:0] score_buffer;
+output reg [24*10-1:0] angle_buffer;
+
+always@(posedge clk, negedge rst)
+begin
+	if(!rst)
+	begin
+		stall_cnt <= 3'd0;
+	end
+	else if(score_rdy&(stall_cnt<3'd4))
+	begin
+		stall_cnt <= stall_cnt + 1'b1;
+	end
+	else
+	begin
+		stall_cnt <= 3'd0;
+	end
+end
+
+always@(posedge clk, negedge rst)
+begin
+	if(!rst)
+	begin
+		score_tem <= 17'd0;
+	end
+	else if(compare_rdy)
+	begin
+		score_tem <= 17'd0;
+	end
+	else if(score_rdy&(stall_cnt==3'd0))
+		score_tem <= score_tem + score;
+	else
+	begin
+		score_tem <= 17'd0;
+	end
+end
+
+always@(posedge clk, negedge rst)
+begin
+	if(!rst)
+	begin
+		score_alpha_cnt <= 9'd0;
+		compare_data_rdy <= 1'b1;
+		score_in <= 17'd0;
+	end
+	else if(score_alpha_cnt == (score_alpha_num-1'b1))
+	begin
+		score_alpha_cnt <= 9'd0;
+		compare_data_rdy <= 1'b0;
+		score_in <= score_tem;
+	end
+	else if(score_rdy&(stall_cnt==3'd0))
+	begin
+		score_alpha_cnt <= score_alpha_cnt + 1'b1;
+		compare_data_rdy <= 1'b1;
+		score_in <= 17'd0;
+	end
+	else
+	begin
+		score_alpha_cnt <= score_alpha_cnt;
+		compare_data_rdy <= 1'b1;
+		score_in <= 17'd0;
+	end
+end
+
+compare #(.width(8),
+			 .quantity(10))//(buffer_next))
+		 c1(.clk(clk),
+			 .compare_data_rdy(compare_data_rdy), // rdy = 0, unrdy = 1
+			 .score_in(score_in),
+			 .score_buffer(score_buffer),
+			 .compare_num(compare_num),
+			 .compare_rdy(compare_rdy),
+			 .insert_index(index));
+			 
+always@(posedge clk, negedge rst)
+begin
+	
+	if(!rst)//(stage_trigger)
+	begin
+		score_buffer = 80'd0;
+		angle_buffer = 240'd0;
+	end
+	else if(compare_rdy)
+	begin
+	case(index)
+		4'd0 : 
+		begin	
+			score_buffer <= {score_buffer[8*10-1:8*1],score_in[16:9]};
+			angle_buffer <= {angle_buffer[24*10-1:24*1],angle_top};
+		end
+		4'd1 : 
+		begin
+			score_buffer <= {score_buffer[8*10-1:8*2],score_in[16:9],score_buffer[8*1-1:0]};
+			angle_buffer <= {angle_buffer[24*10-1:24*2],angle_top,angle_buffer[24*1-1:0]};
+		end
+		4'd2 : 
+		begin
+			score_buffer <= {score_buffer[8*10-1:8*3],score_in[16:9],score_buffer[8*2-1:0]};
+			angle_buffer <= {angle_buffer[24*10-1:24*3],angle_top,angle_buffer[24*2-1:0]};
+		end
+		4'd3 : 
+		begin
+			score_buffer <= {score_buffer[8*10-1:8*4],score_in[16:9],score_buffer[8*3-1:0]};
+			angle_buffer <= {angle_buffer[24*10-1:24*4],angle_top,angle_buffer[24*3-1:0]};
+		end
+		4'd4 : 
+		begin
+			score_buffer <= {score_buffer[8*10-1:8*5],score_in[16:9],score_buffer[8*4-1:0]};
+			angle_buffer <= {angle_buffer[24*10-1:24*5],angle_top,angle_buffer[24*4-1:0]};
+		end
+		4'd5 : 
+		begin
+			score_buffer <= {score_buffer[8*10-1:8*6],score_in[16:9],score_buffer[8*5-1:0]};
+			angle_buffer <= {angle_buffer[24*10-1:24*6],angle_top,angle_buffer[24*5-1:0]};
+		end
+		4'd6 : 
+		begin
+			score_buffer <= {score_buffer[8*10-1:8*7],score_in[16:9],score_buffer[8*6-1:0]};
+			angle_buffer <= {angle_buffer[24*10-1:24*7],angle_top,angle_buffer[24*6-1:0]};
+		end
+		4'd7 : 
+		begin
+			score_buffer <= {score_buffer[8*10-1:8*8],score_in[16:9],score_buffer[8*7-1:0]};
+			angle_buffer <= {angle_buffer[24*10-1:24*8],angle_top,angle_buffer[24*7-1:0]};
+		end
+		4'd8 : 
+		begin
+			score_buffer <= {score_buffer[8*10-1:8*9],score_in[16:9],score_buffer[8*8-1:0]};
+			angle_buffer <= {angle_buffer[24*10-1:24*9],angle_top,angle_buffer[24*8-1:0]};
+		end
+		4'd9 : 
+		begin
+			score_buffer <= {score_in[16:9],score_buffer[8*9-1:0]};
+			angle_buffer <= {angle_top,angle_buffer[24*9-1:0]};
+		end
+		default : 
+		begin
+			score_buffer <= score_buffer;
+			angle_buffer <= angle_buffer;
+		end
+	endcase
+	end
+	else
+	begin
+		score_buffer <= score_buffer;
+		angle_buffer <= angle_buffer;
+	end
+end 
+
+endmodule

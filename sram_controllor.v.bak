@@ -1,0 +1,32 @@
+module sram_controllor(clk,cnt,WE_n);
+
+input clk;
+input[4:0] cnt;
+output reg WE_n;
+
+initial
+begin
+	WE_n = 1;
+end
+
+//always@(posedge clk)
+//begin
+//	case(cnt)
+//		4'd5: WE_n <= 0; //SRAM_test使用567
+//		4'd6: WE_n <= 0;
+//		4'd7: WE_n <= 0; //delay 1 所以不是678
+//		default:
+//			WE_n <= 1;
+//	endcase
+//end
+
+always@(posedge clk)
+begin
+	case(cnt)
+		4'd9: WE_n <= 0; //SRAM_reading使用678
+		4'd10: WE_n <= 0;
+		4'd11: WE_n <= 0; 
+		default:
+			WE_n <= 1;
+	endcase
+end

@@ -1,0 +1,9 @@
+module sinLUT_test(address, clk, value);
+input [9:0] degree;
+input clk;
+output [9:0] value;
+
+sine_LUT sL(.address(degree),
+				.clock(clk),
+				.q(value));
+endmodule				

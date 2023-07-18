@@ -1,0 +1,11 @@
+module score_cal_point_buffer(clk,
+										rst,
+										cal_point_rdy,
+										data_out_a_tem,
+										data_out_b_tem,
+										);
+
+input clk, rst, cal_point_rdy;
+input [7:0] data_out_a_tem, data_out_b_tem;										
+										
+endmodule

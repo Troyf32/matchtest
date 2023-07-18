@@ -1,0 +1,18 @@
+`timescale 1ns/1ns
+module score_cal_point_buffer_tb();
+reg clk, rst, cal_point_rdy;
+reg [7:0] data_out_a_tem, data_out_b_tem;
+wire [7:0] data_out_a_all [4:0], data_out_b_all [4:0];
+
+
+
+
+score_cal_point_buffer scpb(.clk(clk),
+									 .rst(rst),
+									 .cal_point_rdy(cal_point_rdy),
+									 .data_out_a_tem(data_out_a_tem),
+									 .data_out_b_tem(data_out_b_tem),
+									 .data_out_a_all({data_out_a_all[4], data_out_a_all[3], data_out_a_all[2], data_out_a_all[1], data_out_a_all[0]}),
+									 .data_out_b_all({data_out_b_all[4], data_out_b_all[3], data_out_b_all[2], data_out_b_all[1], data_out_b_all[0]}));
+										
+endmodule											

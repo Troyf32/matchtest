@@ -1,0 +1,7 @@
+module state_machine(state,
+							stage);
+							
+input [2:0] state;
+input [2:0] stage;
+
+endmodule

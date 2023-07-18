@@ -1,0 +1,31 @@
+module shift_reg#(parameter shift_num = 20)
+					  (clk,
+					   rst,
+					   angle_in,
+						angle_out);
+						
+input clk, rst;
+input [23:0] angle_in;
+output [23:0] angle_out;
+reg [23:0] angle_shift [shift_num-1:0];
+
+always@(posedge clk, negedge rst)
+begin
+	if(!rst)
+	begin
+		for(i=0;i<shift_num;i=i+1)
+		begin
+			angle_shift[i] <= 24'd0;
+		end
+	end
+	else
+	begin
+		angle_shift[0] <= angle_in;
+		for(i=0;i<shift_num-1;i=i+1)
+		begin
+			angle_shift[i+1] <= angle_shift[i];
+		end
+	end
+end
+
+assign angle_out = angle_shift[shift_num-1];

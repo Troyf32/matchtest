@@ -1,0 +1,19 @@
+module sqrt_test(input [15:0] radical;
+					  input clk;
+					  output [7:0]  q;
+					  output [8:0]  remainder);
+
+reg [15:0] radical_r;
+reg [7:0]  q_r;
+reg [8:0]  remainder_r;
+
+always@(posedge clk)
+begin
+	radical_r	<= radical;
+	q_r			<= q;
+	remainder_r	<= remainder;
+end
+
+sqrt_16bit ssq(.radical(radical_r),
+				   .q(q),
+				   .remainder(remainder));
