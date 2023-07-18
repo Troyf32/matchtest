@@ -1,0 +1,22 @@
+module compare(input clk,
+					input rst,
+					input [10*8-1:0] before,
+					output reg [10*8-1:0] insert_index);
+
+integer i;
+					
+always@(posedge clk, negedge rst)
+begin
+	if(!rst)
+		after = 80'd0;
+	else
+	begin
+		for(i=0;i<10;i=i+1)
+		begin
+			if()
+			
+		end
+	end
+end		
+			
+endmodule

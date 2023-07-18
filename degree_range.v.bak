@@ -1,0 +1,5 @@
+module degree_range(degree, degree_range);
+input [11:0] degree;
+output [1:0] degree_range;
+
+

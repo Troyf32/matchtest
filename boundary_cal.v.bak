@@ -1,0 +1,5 @@
+module boundary_cal(rI, rE, xc, yc, theta, phi, xb, yb);
+input rI, rE;
+input xc, yc;
+input [9:0] theta, phi;
+reg [8:0] alpha;

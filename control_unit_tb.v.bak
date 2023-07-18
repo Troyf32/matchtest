@@ -1,0 +1,47 @@
+`timescale 1ns/1ns
+module control_unit_tb();
+reg start;
+reg clk;
+reg rst;
+reg [19:0] addr;
+reg [24*10-1:0] candidate_angle_buffer;
+wire [11:0] theta;
+wire [11:0] phi;
+wire [11:0] alpha; 
+wire [8:0] score_alpha_num;
+//output reg cal_point_rdy;  //use for stall 5 clk
+wire  score_rdy;
+wire [3:0] compare_num;
+wire if_last_angle;
+wire best_angle_rdy;
+
+
+always#10 clk = ~clk;
+initial
+begin
+	clk <= 1'b1;
+	rst <= 1'b1;
+	sorted_rdy <= 1'b0;
+	start <= 1'b0;
+	#20
+	rst <= 1'b0;
+	#20
+	rst <= 1'b1;
+	start <= 1'b1;
+end
+
+
+control_unit cu(.start(start), 
+				    .clk(clk),
+				    .rst(rst),
+					 .addr(addr),
+					 .candidate_angle_buffer(candidate_angle_buffer),
+				    .theta(theta),
+					 .phi(phi),
+					 .alpha(alpha),
+					 .score_alpha_num(score_alpha_num),
+					 //.cal_point_rdy(cal_point_rdy), //use for stall 5 clk
+					 .score_rdy(score_rdy),
+					 .compare_num(compare_num),
+					 .if_last_angle(if_last_angle),   ///////////// not defined yet////////////////
+					 .best_angle_rdy(best_angle_rdy));

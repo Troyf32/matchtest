@@ -1,0 +1,3 @@
+`timescale 1ns/1ns
+module ram_control_tb();
+reg clk, rst, start;

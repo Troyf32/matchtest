@@ -1,0 +1,46 @@
+`timescale 1ns/1ns
+module iris_center_tb();
+parameter N = 21 ;
+parameter M = 13 ;
+reg clk, rstn;
+reg [M-1:0] rI, rE;			// 512  取小數點後4bit
+reg [N-1:0] rI_shift;
+reg data_rdy;
+wire res_rdy;
+wire [N-1:0] tau;
+
+//assign rI_shift = tb.td.rI_shift;
+//assign tau_reg = tb.td.tau_reg;
+
+divider_man #(.N(N), .M(M))
+u_divider
+(
+.clk (clk),
+.rstn (rstn),
+.data_rdy (data_rdy),
+.dividend (rI_shift),
+.divisor (rE),
+.res_rdy (res_rdy),
+.merchant (tau),
+.remainder ());			 
+
+always#10 clk = ~clk;
+initial
+begin
+	rI <= 'd728;
+	data_rdy <= 1'b1;
+	rstn <= 1'b0 ;
+	#8 ;
+	rI_shift = {rI,8'b0};
+	rstn = 1'b1 ;
+	clk <= 1'b0;
+	rE <= 'd1320;
+	forever
+	begin
+	#100
+	if(res_rdy == 1'b1)
+		$stop;
+	end
+end
+
+endmodule

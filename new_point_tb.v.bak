@@ -1,0 +1,71 @@
+`timescale 1ns/1ns
+module new_point_tb();
+parameter width = 14;
+reg [width-1:0] xc, yc, xb, yb;
+reg clk;
+wire [width-1:0] new_xi0;
+wire [width-1:0] new_yi0;
+wire [width-1:0] new_xo0;
+wire [width-1:0] new_yo0;
+wire [width-1:0] new_xi1;
+wire [width-1:0] new_yi1;
+wire [width-1:0] new_xo1;
+wire [width-1:0] new_yo1;
+wire [width-1:0] new_xi2;
+wire [width-1:0] new_yi2;
+wire [width-1:0] new_xo2;
+wire [width-1:0] new_yo2;
+wire [width-1:0] new_xi3;
+wire [width-1:0] new_yi3;
+wire [width-1:0] new_xo3;
+wire [width-1:0] new_yo3;
+integer fp_r, fp_w, cnt, i;
+
+
+point_cal #(.width(width))
+				 pc (.xc(xc),       //整數左移4bits
+					  .yc(yc),
+					  .xb(xb),
+					  .yb(yb),
+					  .clk(clk),
+					  .new_xi({new_xi3, new_xi2, new_xi1, new_xi0}),
+					  .new_yi({new_yi3, new_yi2, new_yi1, new_yi0}),
+					  .new_xo({new_xo3, new_xo2, new_xo1, new_xo0}),
+					  .new_yo({new_yo3, new_yo2, new_yo1, new_yo0})
+					  );
+					  
+always#10 clk = ~clk;
+initial
+begin
+	fp_r = $fopen("D:/eyetrack_troy/cvproject/cvproject/maching_389.txt", "r");
+	fp_w = $fopen("D:/eyetrack_troy/cvproject/cvproject/newpoint_389.txt", "w");
+	clk <= 1'b0;
+	//xc <= 10'd203; 
+	//yc <= 10'd86;	
+	xc <= 14'd3213;
+	yc <= 14'd1580;
+	//xb <= 14'd3968; //248 //out 251 83 254 83 257 83     in 245 84 242 84 239 84
+	//yb <= 14'd1328; //83
+	//#100
+	//xb <= 10'd236; //out 239 53 241 51 243 49		 in 234 57 232 59 230 62
+	//yb <= 10'd55;
+	//#100
+	//xb <= 10'd183; //out 182 130 181 133 180 136	 in 185 125 186 122 187 119 
+	//yb <= 10'd127;
+	//#100
+	//xb <= 10'd248; //out 251 88 254 89 257 89 	 in 245 88 242 88 239 88
+	//yb <= 10'd88;
+
+	
+	for(i=0;i<3600;i=i+1)
+	begin
+		cnt = $fscanf(fp_r, "%d %d", xb, yb);
+		#100;
+		$fwrite(fp_w, "%d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d \n",new_xi0, new_yi0, new_xi1, new_yi1, new_xi2, new_yi2, new_xi3, new_yi3,new_xo0, new_yo0, new_xo1, new_yo1, new_xo2, new_yo2, new_xo3, new_yo3);
+	end
+	$fclose(fp_r);
+	$fclose(fp_w);
+end//
+
+					 					  
+endmodule					  

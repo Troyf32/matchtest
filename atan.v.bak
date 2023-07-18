@@ -1,0 +1,46 @@
+module atan#(parameter width = 10)
+				(y, 
+				 x, 
+				 clk, 
+				 degree);
+input [width-1:0] y, x; //xb-xc yb-yc 10bits (-512~511)
+input clk;
+output [11:0] degree; // ()
+
+wire [width-1:0] tem_x, tem_y, pos_x, pos_y, tem_degree;
+
+
+reverse2 #(.BIT(width))
+		 x_r(.neg(x),
+			  .pos(tem_x));
+			  
+reverse2 #(.BIT(width))
+		 y_r(.neg(y),
+			  .pos(tem_y));
+
+MUX #(.m(width), 	// x 10bit
+      .n(2),     	// 2 input
+      .width(1)) 	// 1bit select
+ muxx(.pdata({tem_x,x}),
+      .s(x[width-1]),
+      .data_o(pos_x));	
+		
+MUX #(.m(width),  // y 10bit
+      .n(2),     	// 2 input
+      .width(1)) 	// 1bit select
+ muxy(.pdata({tem_y,y}),
+      .s(y[width-1]),
+      .data_o(pos_y));	
+			  
+atan_LUT al(.address({pos_y[6:0],pos_x[6:0]}),
+				.clock(clk),
+				.q(tem_degree));
+				
+MUX #(.m(12),    // degree 12bit
+      .n(4),     // 4 input
+      .width(2)) // 2bit select
+ muxs(.pdata({12'd1800+{2'b0,tem_degree},12'd1800-{2'b0,tem_degree},12'd3600-{2'b0,tem_degree},{2'b0,tem_degree}}),
+      .s({x[width-1],y[width-1]}),
+      .data_o(degree));	
+		
+endmodule

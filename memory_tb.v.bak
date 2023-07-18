@@ -1,0 +1,55 @@
+`timescale 1ns/1ns
+module memory_tb();
+reg [16:0] addr_a;
+reg [16:0] addr_b;
+reg [7:0] data_in_a;
+reg [7:0] data_in_b;
+reg clk;
+reg w_en_a, w_en_b;
+wire [7:0] data_out_a;
+wire [7:0] data_out_b;
+
+ram_test r(.addr_a(addr_a), 
+			  .addr_b(addr_b),
+			  .data_in_a(data_in_a),
+			  .data_in_b(data_in_b),
+			  .clk(clk),
+			  .w_en_a(w_en_a),
+			  .w_en_b(w_en_b),
+			  .data_out_a(data_out_a),
+			  .data_out_b(data_out_b));
+
+always#10 clk = ~clk;		  
+initial
+begin
+	clk = 1'b0;
+	w_en_a = 1'b1;
+	w_en_b = 1'b1;
+	data_in_a = 8'd30;
+	data_in_b = 8'd255;
+	addr_a = 17'd48462;
+	addr_b = 17'd70000;
+	#40
+	w_en_a = 1'b0;
+	w_en_b = 1'b0;
+	data_in_a = 8'd1;
+	data_in_b = 8'd8;
+	addr_a = 17'd48462;
+	addr_b = 17'd70000;
+	#40
+	addr_a = 17'd48462;
+	addr_b = 17'd70000;
+	#40
+	w_en_a = 1'b1;
+	w_en_b = 1'b1;
+	data_in_a = 8'd3;
+	data_in_b = 8'd8;
+	addr_a = 17'd48462;
+	addr_b = 17'd70000;
+	#40
+	addr_a = 17'd48462;
+	addr_b = 17'd70000;
+	
+end			  
+
+endmodule

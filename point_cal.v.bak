@@ -1,0 +1,119 @@
+module point_cal #(parameter width = 14)
+					 (
+					  input [width-1:0] xc,       //整數小數後4bits
+					  input [width-1:0] yc,
+					  input [width-1:0] xb,
+					  input [width-1:0] yb,
+					  input clk,
+					  output reg [width*4-1:0] new_xi,
+					  output reg [width*4-1:0] new_yi,
+					  output reg [width*4-1:0] new_xo,
+					  output reg [width*4-1:0] new_yo,
+					  output reg [width-1:0] xb_o,
+					  output reg [width-1:0] yb_o
+					  );   
+wire [width-1:0] x_dis, y_dis;
+wire ifout_line;
+wire [9:0] co_value_line, si_value_line;
+wire [11:0] degree_line;
+reg [11:0] degree;
+reg [width-1:0] xi [3:0], yi [3:0], xb_r [2:0];
+reg [width-1:0] xo [3:0], yo [3:0], yb_r [2:0;
+wire [width-1:0] xi_line [3:0], yi_line [3:0];// xi_line_tem [3:0], yi_line_tem [3:0];
+wire [width-1:0] xo_line [3:0], yo_line [3:0];
+reg [9:0] co_value, si_value;
+wire [15:0] co_value_tem0, co_value_tem1, co_value_tem2, co_value_tem3, si_value_tem0, si_value_tem1, si_value_tem2, si_value_tem3, ex_co_value, ex_si_value;
+wire [width-1:0] final_co_value [3:0], final_si_value [3:0];
+
+assign x_dis = (xb-xc);   // {x_dis,y_dis} 第 三 二 四 一 象限
+assign y_dis = (yb-yc);
+
+assign ex_co_value = {{6{co_value[9]}},co_value};
+assign ex_si_value = {{6{si_value[9]}},si_value};
+
+assign co_value_tem0 = (ex_co_value * 16'd3) ;
+assign si_value_tem0 = (ex_si_value * 16'd3) ;
+assign co_value_tem1 = (ex_co_value * 16'd6) ;
+assign si_value_tem1 = (ex_si_value * 16'd6) ;
+assign co_value_tem2 = (ex_co_value * 16'd9) ;
+assign si_value_tem2 = (ex_si_value * 16'd9) ;
+assign co_value_tem3 = (ex_co_value * 16'd12);
+assign si_value_tem3 = (ex_si_value * 16'd12);
+
+assign final_co_value[0] = {{2{co_value_tem0[15]}},co_value_tem0[15:18-width]};
+assign final_si_value[0] = {{2{si_value_tem0[15]}},si_value_tem0[15:18-width]};
+assign final_co_value[1] = {{2{co_value_tem1[15]}},co_value_tem1[15:18-width]};
+assign final_si_value[1] = {{2{si_value_tem1[15]}},si_value_tem1[15:18-width]};
+assign final_co_value[2] = {{2{co_value_tem2[15]}},co_value_tem2[15:18-width]};
+assign final_si_value[2] = {{2{si_value_tem2[15]}},si_value_tem2[15:18-width]};
+assign final_co_value[3] = {{2{co_value_tem3[15]}},co_value_tem3[15:18-width]};
+assign final_si_value[3] = {{2{si_value_tem3[15]}},si_value_tem3[15:18-width]};
+
+assign xo_line[0] = xb + final_co_value[0];    // 1 * 3 
+assign yo_line[0] = yb + final_si_value[0];    // 1 * 3 
+assign xi_line[0] = xb - final_co_value[0];    // 1 * 3 
+assign yi_line[0] = yb - final_si_value[0];    // 1 * 3 
+assign xo_line[1] = xb + final_co_value[1];    // 2 * 3 
+assign yo_line[1] = yb + final_si_value[1];    // 2 * 3 
+assign xi_line[1] = xb - final_co_value[1];    // 2 * 3 
+assign yi_line[1] = yb - final_si_value[1];    // 2 * 3 
+assign xo_line[2] = xb + final_co_value[2];    // 3 * 3 
+assign yo_line[2] = yb + final_si_value[2];    // 3 * 3 
+assign xi_line[2] = xb - final_co_value[2];    // 3 * 3 
+assign yi_line[2] = yb - final_si_value[2];    // 3 * 3
+assign xo_line[3] = xb + final_co_value[3];    // 4 * 3 
+assign yo_line[3] = yb + final_si_value[3];    // 4 * 3
+assign xi_line[3] = xb - final_co_value[3];    // 4 * 3 
+assign yi_line[3] = yb - final_si_value[3];    // 4 * 3  
+
+always@(posedge clk)
+begin
+	//reg0
+	degree <= degree_line;
+	//reg1
+	co_value <= co_value_line; 
+	si_value <= si_value_line;
+	//reg2
+	new_xo[width-1:0] 			<= xo_line[0];
+	new_yo[width-1:0] 			<= yo_line[0];
+	new_xi[width-1:0] 			<= xi_line[0];
+	new_yi[width-1:0] 			<= yi_line[0];
+	new_xo[width*2-1:width]		<= xo_line[1];
+	new_yo[width*2-1:width]		<= yo_line[1];
+	new_xi[width*2-1:width]		<= xi_line[1];
+	new_yi[width*2-1:width]		<= yi_line[1];
+	new_xo[width*3-1:width*2] 	<= xo_line[2];
+	new_yo[width*3-1:width*2] 	<= yo_line[2];
+	new_xi[width*3-1:width*2] 	<= xi_line[2];
+	new_yi[width*3-1:width*2] 	<= yi_line[2];
+	new_xo[width*4-1:width*3] 	<= xo_line[3];
+	new_yo[width*4-1:width*3] 	<= yo_line[3];
+	new_xi[width*4-1:width*3] 	<= xi_line[3];
+	new_yi[width*4-1:width*3] 	<= yi_line[3];
+	xb_r[0]	<= xb;
+	yb_r[0]	<= yb;
+	xb_r[1]	<= xb_r[0];
+	yb_r[1]	<= yb_r[0];
+	xb_r[2]	<= xb_r[1];
+	yb_r[2]	<= yb_r[1];
+	xb_o	<= xb_r[2];
+	yb_o	<= yb_r[2];
+end
+
+atan at(.y(y_dis[width-1:width-10]),			// 10bits (-512~511)
+		  .x(x_dis[width-1:width-10]),			// 10bits (-512~511)
+		  .clk(clk),
+		  .degree(degree_line));	// 10bits (0~900) theta 0~90 * 10 
+
+trigonometric co(.degree(degree),
+					  .clk(clk),
+					  .value(co_value_line),
+					  .iscos(1'b1));
+
+trigonometric si(.degree(degree),
+					  .clk(clk),
+					  .value(si_value_line),
+					  .iscos(1'b0));					  
+
+		 
+endmodule  

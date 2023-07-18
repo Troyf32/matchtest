@@ -1,0 +1,71 @@
+module ram_control();
+
+
+
+
+
+assign addr_a_line[0] = {7'b0,{new_yi[(width-1)-:10]}}*17'd380+{7'b0,new_xi[(width-1)-:10]}};
+assign addr_a_line[1] = {7'b0,{new_yi[(width*2-1)-:10]}}*17'd380+{7'b0,new_xi[(width*2-1)-:10]}};
+assign addr_a_line[2] = {7'b0,{new_yi[(width*3-1)-:10]}}*17'd380+{7'b0,new_xi[(width*3-1)-:10]}};
+assign addr_a_line[3] = {7'b0,{new_yi[(width*4-1)-:10]}}*17'd380+{7'b0,new_xi[(width*4-1)-:10]}};
+assign addr_a_line[4] = {7'b0,{yb_o[14:4]}}*17'd380+{7'b0,xb_o[14:4]}};
+assign addr_b_line[0] = {7'b0,{new_yo[(width-1)-:10]}}*17'd380+{7'b0,new_xo[(width-1)-:10]}};
+assign addr_b_line[1] = {7'b0,{new_yo[(width*2-1)-:10]}}*17'd380+{7'b0,new_xo[(width*2-1)-:10]}};
+assign addr_b_line[2] = {7'b0,{new_yo[(width*3-1)-:10]}}*17'd380+{7'b0,new_xo[(width*3-1)-:10]}};
+assign addr_b_line[3] = {7'b0,{new_yo[(width*4-1)-:10]}}*17'd380+{7'b0,new_xo[(width*4-1)-:10]}};
+assign addr_b_line[4] = {7'b0,{yb_o[14:4]}}*17'd380+{7'b0,xb_o[14:4]}};
+
+				
+always@(posedge clk, negedge rst)
+begin
+	if(!rst)
+	begin
+		addr_cnt = 3'd0;
+	end
+	else if(point_rdy&(addr_cnt<5))
+	begin
+		addr_a_tem = addr_a_line;
+		addr_b_tem = addr_b_line;
+		addr_cnt = addr_cnt + 1'b1;
+	end
+end
+
+MUX #(.m(17),    // tem_degree 17bit
+      .n(5),     // 5 input
+      .width(3)) // 3bit select
+ adda(.pdata({addr_a_line[4], addr_a_line[3], addr_a_line[2], addr_a_line[1], addr_a_line[0]}),
+      .s(addr_cnt),
+      .data_o(addr_a_tem));
+
+MUX #(.m(17),    // tem_degree 17bit
+      .n(5),     // 5 input
+      .width(3)) // 3bit select
+ addb(.pdata({addr_b_line[4], addr_b_line[3], addr_b_line[2], addr_b_line[1], addr_b_line[0]}),
+      .s(addr_cnt),
+      .data_o(addr_b_tem));
+
+MUX #(.m(17),    // tem_degree 17bit
+      .n(2),     // 2 input
+      .width(1)) // 1bit select
+  ewa(.pdata({addr_a_w, addr_a_tem}),
+      .s(w_en_a),
+      .data_o(addr_a));
+
+MUX #(.m(17),    // tem_degree 17bit
+      .n(2),     // 2 input
+      .width(1)) // 1bit select
+  ewb(.pdata({addr_b_w, addr_b_tem}),
+      .s(w_en_b),
+      .data_o(addr_b));		
+
+ram rm0(.addr_a(addr_a), 
+		  .addr_b(addr_b),
+		  .data_in_a(data_in_a),
+		  .data_in_b(data_in_b),
+		  .clk(clk),
+		  .w_en_a(w_en_a),
+		  .w_en_b(w_en_b),
+		  .data_out_a(data_out_a),
+		  .data_out_b(data_out_b);	
+		  
+endmodule

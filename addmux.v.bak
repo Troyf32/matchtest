@@ -1,0 +1,22 @@
+module addmux(row,
+				  col,
+				  addr,
+				  clk);
+
+input [9:0] row, col;
+input clk;
+output reg [18:0] addr;
+reg [9:0] row_reg, col_reg;
+
+always@(posedge clk)
+begin	
+	
+end
+
+always@(posedge clk)
+begin
+	addr <= row_reg * 10'd800 + col_reg; 
+end
+
+endmodule
+				 

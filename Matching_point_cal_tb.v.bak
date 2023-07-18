@@ -1,0 +1,24 @@
+`timescale 1ns/1ns
+module Matching_point_cal_tb();
+
+
+
+
+
+Matching_point_cal mpc(.clk(clk),
+							  .rst(rst),
+							  .theta(theta),
+							  .phi(phi),
+							  .alpha(alpha),
+							  .xc(xc),
+							  .yc(yc),
+							  .tau(tau),
+							  .rE(rE),
+							  .new_xi(new_xi),
+							  .new_yi(new_yi),
+							  .new_xo(new_xo),
+							  .new_yo(new_yo),
+							  .xb_o(xb_o),
+							  .yb_o(yb_o));
+								  
+endmodule								  

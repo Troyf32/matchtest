@@ -1,0 +1,13 @@
+
+
+D:/FPGA_Troy/maching/LPM_DIVIDE.v
+
+Nov 25 03PM:52:54>: Variation file name (LPM_DIVIDE) is identical with the name of one of its sub-components.
+
+MegaWizard Plug-In Manager will rename the variation to "LPM_DIVIDa" to prevent compilation errors
+
+D:/FPGA_Troy/maching/lpm_divide.v
+
+Nov 25 04PM:15:27>: Variation file name (lpm_divide) is identical with the name of one of its sub-components.
+
+MegaWizard Plug-In Manager will rename the variation to "lpm_divida" to prevent compilation errors

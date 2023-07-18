@@ -1,0 +1,385 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 1991-2013 Altera Corporation
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, Altera MegaCore Function License 
+# Agreement, or other applicable license agreement, including, 
+# without limitation, that your use is for the sole purpose of 
+# programming logic devices manufactured by Altera and sold by 
+# Altera or its authorized distributors.  Please refer to the 
+# applicable agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus II 64-Bit
+# Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
+# Date created = 19:09:17  October 03, 2022
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		maching_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus II software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "Cyclone IV E"
+set_global_assignment -name DEVICE EP4CE115F29C7
+set_global_assignment -name TOP_LEVEL_ENTITY top_module
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 13.1
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "19:09:17  OCTOBER 03, 2022"
+set_global_assignment -name LAST_QUARTUS_VERSION 13.1
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
+set_global_assignment -name NOMINAL_CORE_SUPPLY_VOLTAGE 1.2V
+set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (Verilog)"
+set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda_simulation
+set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH top_module_tb -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_NAME sqrt_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id sqrt_tb
+set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "1 s" -section_id sqrt_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME sqrt_tb -section_id sqrt_tb
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name EDA_TEST_BENCH_NAME LUT_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id LUT_tb
+set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "1 s" -section_id LUT_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME LUT_tb -section_id LUT_tb
+set_global_assignment -name EDA_TEST_BENCH_NAME reverse_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id reverse_tb
+set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "5 s" -section_id reverse_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME reverse_tb -section_id reverse_tb
+set_global_assignment -name EDA_TEST_BENCH_NAME trigonometric_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id trigonometric_tb
+set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "1 s" -section_id trigonometric_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME trigonometric_tb -section_id trigonometric_tb
+set_global_assignment -name EDA_TEST_BENCH_NAME tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id tb
+set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "1 s" -section_id tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb -section_id tb
+set_global_assignment -name EDA_TEST_BENCH_NAME section_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id section_tb
+set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "1 s" -section_id section_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME section_tb -section_id section_tb
+set_global_assignment -name EDA_TEST_BENCH_NAME boundary_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id boundary_tb
+set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "1 s" -section_id boundary_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME boundary_tb -section_id boundary_tb
+set_global_assignment -name EDA_TEST_BENCH_NAME iris_center_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id iris_center_tb
+set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "1 s" -section_id iris_center_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME iris_center_tb -section_id iris_center_tb
+set_global_assignment -name EDA_TEST_BENCH_NAME memory_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id memory_tb
+set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "1 s" -section_id memory_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME memory_tb -section_id memory_tb
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
+set_global_assignment -name EDA_TEST_BENCH_NAME compare_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id compare_tb
+set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "1 s" -section_id compare_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME compare_tb -section_id compare_tb
+set_location_assignment PIN_AF8 -to CE_n
+set_location_assignment PIN_AD4 -to LB_n
+set_location_assignment PIN_AD5 -to OE_n
+set_location_assignment PIN_AC4 -to UB_n
+set_location_assignment PIN_AE8 -to WE_n
+set_location_assignment PIN_T8 -to addr[19]
+set_location_assignment PIN_AB8 -to addr[18]
+set_location_assignment PIN_AB9 -to addr[17]
+set_location_assignment PIN_AC11 -to addr[16]
+set_location_assignment PIN_AB11 -to addr[15]
+set_location_assignment PIN_AA4 -to addr[14]
+set_location_assignment PIN_AC3 -to addr[13]
+set_location_assignment PIN_AB4 -to addr[12]
+set_location_assignment PIN_AD3 -to addr[11]
+set_location_assignment PIN_AF2 -to addr[10]
+set_location_assignment PIN_T7 -to addr[9]
+set_location_assignment PIN_AF5 -to addr[8]
+set_location_assignment PIN_AC5 -to addr[7]
+set_location_assignment PIN_AB5 -to addr[6]
+set_location_assignment PIN_AE6 -to addr[5]
+set_location_assignment PIN_AB6 -to addr[4]
+set_location_assignment PIN_AC7 -to addr[3]
+set_location_assignment PIN_AE7 -to addr[2]
+set_location_assignment PIN_AD7 -to addr[1]
+set_location_assignment PIN_AB7 -to addr[0]
+set_location_assignment PIN_H22 -to seven1[6]
+set_location_assignment PIN_J22 -to seven1[5]
+set_location_assignment PIN_L25 -to seven1[4]
+set_location_assignment PIN_L26 -to seven1[3]
+set_location_assignment PIN_E17 -to seven1[2]
+set_location_assignment PIN_F22 -to seven1[1]
+set_location_assignment PIN_G18 -to seven1[0]
+set_location_assignment PIN_U24 -to seven2[6]
+set_location_assignment PIN_U23 -to seven2[5]
+set_location_assignment PIN_W25 -to seven2[4]
+set_location_assignment PIN_W22 -to seven2[3]
+set_location_assignment PIN_W21 -to seven2[2]
+set_location_assignment PIN_Y22 -to seven2[1]
+set_location_assignment PIN_M24 -to seven2[0]
+set_location_assignment PIN_W28 -to seven3[6]
+set_location_assignment PIN_W27 -to seven3[5]
+set_location_assignment PIN_Y26 -to seven3[4]
+set_location_assignment PIN_W26 -to seven3[3]
+set_location_assignment PIN_Y25 -to seven3[2]
+set_location_assignment PIN_AA26 -to seven3[1]
+set_location_assignment PIN_AA25 -to seven3[0]
+set_location_assignment PIN_Y19 -to seven4[6]
+set_location_assignment PIN_AF23 -to seven4[5]
+set_location_assignment PIN_AD24 -to seven4[4]
+set_location_assignment PIN_AA21 -to seven4[3]
+set_location_assignment PIN_AB20 -to seven4[2]
+set_location_assignment PIN_U21 -to seven4[1]
+set_location_assignment PIN_V21 -to seven4[0]
+set_location_assignment PIN_AE18 -to seven5[6]
+set_location_assignment PIN_AF19 -to seven5[5]
+set_location_assignment PIN_AE19 -to seven5[4]
+set_location_assignment PIN_AH21 -to seven5[3]
+set_location_assignment PIN_AG21 -to seven5[2]
+set_location_assignment PIN_AA19 -to seven5[1]
+set_location_assignment PIN_AB19 -to seven5[0]
+set_location_assignment PIN_AH18 -to seven6[6]
+set_location_assignment PIN_AF18 -to seven6[5]
+set_location_assignment PIN_AG19 -to seven6[4]
+set_location_assignment PIN_AH19 -to seven6[3]
+set_location_assignment PIN_AB18 -to seven6[2]
+set_location_assignment PIN_AC18 -to seven6[1]
+set_location_assignment PIN_AD18 -to seven6[0]
+set_location_assignment PIN_AC17 -to seven7[6]
+set_location_assignment PIN_AA15 -to seven7[5]
+set_location_assignment PIN_AB15 -to seven7[4]
+set_location_assignment PIN_AB17 -to seven7[3]
+set_location_assignment PIN_AA16 -to seven7[2]
+set_location_assignment PIN_AB16 -to seven7[1]
+set_location_assignment PIN_AA17 -to seven7[0]
+set_location_assignment PIN_AA14 -to seven8[6]
+set_location_assignment PIN_AG18 -to seven8[5]
+set_location_assignment PIN_AF17 -to seven8[4]
+set_location_assignment PIN_AH17 -to seven8[3]
+set_location_assignment PIN_AG17 -to seven8[2]
+set_location_assignment PIN_AE17 -to seven8[1]
+set_location_assignment PIN_AD17 -to seven8[0]
+set_location_assignment PIN_Y2 -to clk
+set_location_assignment PIN_AC28 -to rst
+set_global_assignment -name ENABLE_SIGNALTAP OFF
+set_global_assignment -name USE_SIGNALTAP_FILE stp5.stp
+set_global_assignment -name EDA_TEST_BENCH_NAME state_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id state_tb
+set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "1 s" -section_id state_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME state_tb -section_id state_tb
+set_location_assignment PIN_AG3 -to IO[15]
+set_location_assignment PIN_AF3 -to IO[14]
+set_location_assignment PIN_AE4 -to IO[13]
+set_location_assignment PIN_AE3 -to IO[12]
+set_location_assignment PIN_AE1 -to IO[11]
+set_location_assignment PIN_AE2 -to IO[10]
+set_location_assignment PIN_AD2 -to IO[9]
+set_location_assignment PIN_AD1 -to IO[8]
+set_location_assignment PIN_AF7 -to IO[7]
+set_location_assignment PIN_AH6 -to IO[6]
+set_location_assignment PIN_AG6 -to IO[5]
+set_location_assignment PIN_AF6 -to IO[4]
+set_location_assignment PIN_AH4 -to IO[3]
+set_location_assignment PIN_AG4 -to IO[2]
+set_location_assignment PIN_AF4 -to IO[1]
+set_location_assignment PIN_AH3 -to IO[0]
+set_location_assignment PIN_AB28 -to start
+set_location_assignment PIN_G19 -to LEDR0
+set_location_assignment PIN_F19 -to LEDR1
+set_location_assignment PIN_E19 -to LEDR2
+set_location_assignment PIN_F21 -to LEDR3
+set_location_assignment PIN_F18 -to LEDR4
+set_location_assignment PIN_M23 -to button
+set_global_assignment -name EDA_TEST_BENCH_NAME Matching_point_cal_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id Matching_point_cal_tb
+set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "1 s" -section_id Matching_point_cal_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME Matching_point_cal_tb -section_id Matching_point_cal_tb
+set_global_assignment -name EDA_TEST_BENCH_NAME sram_controllor_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id sram_controllor_tb
+set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "1 s" -section_id sram_controllor_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME sram_controllor_tb -section_id sram_controllor_tb
+set_global_assignment -name EDA_TEST_BENCH_NAME score_cal_point_buffer_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id score_cal_point_buffer_tb
+set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "1 s" -section_id score_cal_point_buffer_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME score_cal_point_buffer_tb -section_id score_cal_point_buffer_tb
+set_global_assignment -name EDA_TEST_BENCH_NAME sort_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id sort_tb
+set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "1 s" -section_id sort_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME sort_tb -section_id sort_tb
+set_global_assignment -name EDA_TEST_BENCH_NAME score_cal_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id score_cal_tb
+set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "1 s" -section_id score_cal_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME score_cal_tb -section_id score_cal_tb
+set_global_assignment -name EDA_TEST_BENCH_NAME ram_control_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id ram_control_tb
+set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "1 s" -section_id ram_control_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME ram_control_tb -section_id ram_control_tb
+set_global_assignment -name EDA_TEST_BENCH_NAME control_unit_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id control_unit_tb
+set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "1 s" -section_id control_unit_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME control_unit_tb -section_id control_unit_tb
+set_global_assignment -name EDA_TEST_BENCH_NAME top_module_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id top_module_tb
+set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "1 s" -section_id top_module_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME top_module_tb -section_id top_module_tb
+set_global_assignment -name EDA_TEST_BENCH_NAME new_point_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id new_point_tb
+set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "1 s" -section_id new_point_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME new_point_tb -section_id new_point_tb
+set_global_assignment -name VERILOG_FILE ram_control_5ram.v
+set_global_assignment -name VERILOG_FILE top_module.v
+set_global_assignment -name VERILOG_FILE ram_roi.v
+set_global_assignment -name VERILOG_FILE Debounce.v
+set_global_assignment -name VERILOG_FILE seven_seg.v
+set_global_assignment -name VERILOG_FILE reverse2.v
+set_global_assignment -name SDC_FILE maching.tau.sdc
+set_global_assignment -name SDC_FILE maching.sqrt.sdc
+set_global_assignment -name SDC_FILE maching.divide.sdc
+set_global_assignment -name QIP_FILE tanh_LUT.qip
+set_global_assignment -name QIP_FILE sq.qip
+set_global_assignment -name QIP_FILE memory2.qip
+set_global_assignment -name QIP_FILE memory.qip
+set_global_assignment -name QIP_FILE LUT.qip
+set_global_assignment -name QIP_FILE lpm_divide.qip
+set_global_assignment -name QIP_FILE fp_div.qip
+set_global_assignment -name QIP_FILE atan_LUT.qip
+set_global_assignment -name VERILOG_FILE tanh_LUT.v
+set_global_assignment -name VERILOG_FILE tanh.v
+set_global_assignment -name VERILOG_FILE sort_tb.v
+set_global_assignment -name VERILOG_FILE sort.v
+set_global_assignment -name VERILOG_FILE score_cal_tb.v
+set_global_assignment -name VERILOG_FILE score_cal.v
+set_global_assignment -name VERILOG_FILE read_bmp_tb.v
+set_global_assignment -name VERILOG_FILE read_bmp.v
+set_global_assignment -name VERILOG_FILE ram_test.v
+set_global_assignment -name VERILOG_FILE ram.v
+set_global_assignment -name VERILOG_FILE point_cal_test.v
+set_global_assignment -name VERILOG_FILE point_cal.v
+set_global_assignment -name VERILOG_FILE new_point_tb.v
+set_global_assignment -name VERILOG_FILE memory_tb.v
+set_global_assignment -name VERILOG_FILE memory2.v
+set_global_assignment -name VERILOG_FILE memory.v
+set_global_assignment -name VERILOG_FILE match_cal.v
+set_global_assignment -name VERILOG_FILE fp_div.v
+set_global_assignment -name VERILOG_FILE batcher_odd_even_sort_128.v
+set_global_assignment -name VERILOG_FILE batcher_odd_even_sort.v
+set_global_assignment -name VERILOG_FILE atan_tb.v
+set_global_assignment -name VERILOG_FILE atan_LUT.v
+set_global_assignment -name VERILOG_FILE atan.v
+set_global_assignment -name VERILOG_FILE D_FlipFlop.v
+set_global_assignment -name SDC_FILE maching.out.sdc
+set_global_assignment -name QIP_FILE sqrt.qip
+set_global_assignment -name VERILOG_FILE sqrt_tb.v
+set_global_assignment -name QIP_FILE sqrt_int.qip
+set_global_assignment -name VERILOG_FILE LUT_tb.v
+set_global_assignment -name VERILOG_FILE sinLUT_test.v
+set_global_assignment -name QIP_FILE sine_LUT.qip
+set_global_assignment -name VERILOG_FILE boundary_cal.v
+set_global_assignment -name VERILOG_FILE trigonometric.v
+set_global_assignment -name VERILOG_FILE reverse.v
+set_global_assignment -name VERILOG_FILE reverse_tb.v
+set_global_assignment -name VERILOG_FILE trigonometric_tb.v
+set_global_assignment -name VERILOG_FILE degree_range.v
+set_global_assignment -name VERILOG_FILE tb.v
+set_global_assignment -name VERILOG_FILE MUX.v
+set_global_assignment -name QIP_FILE sqrt_16bit.qip
+set_global_assignment -name VERILOG_FILE tau_divisor.v
+set_global_assignment -name VERILOG_FILE divider_cell.v
+set_global_assignment -name VERILOG_FILE divider_man.v
+set_global_assignment -name VERILOG_FILE boundary_tb.v
+set_global_assignment -name VERILOG_FILE time_test.v
+set_global_assignment -name VERILOG_FILE tau_cal.v
+set_global_assignment -name VERILOG_FILE IrisCenter_cal.v
+set_global_assignment -name VERILOG_FILE iris_center_tb.v
+set_global_assignment -name VERILOG_FILE sqrt_test.v
+set_global_assignment -name VERILOG_FILE control_unit.v
+set_global_assignment -name VERILOG_FILE ram_control.v
+set_global_assignment -name VERILOG_FILE TERASIC_SRAM.v
+set_global_assignment -name VERILOG_FILE top_tb.v
+set_global_assignment -name VERILOG_FILE compare.v
+set_global_assignment -name VERILOG_FILE compare_tb.v
+set_global_assignment -name VERILOG_FILE SRAM_tset.v
+set_global_assignment -name VERILOG_FILE sram_controllor.v
+set_global_assignment -name VERILOG_FILE change_test.v
+set_global_assignment -name SIGNALTAP_FILE stp5.stp
+set_global_assignment -name VERILOG_FILE state_machine.v
+set_global_assignment -name VERILOG_FILE state_tb.v
+set_global_assignment -name QIP_FILE ram_roi.qip
+set_global_assignment -name VERILOG_FILE addmux.v
+set_global_assignment -name VERILOG_FILE Matching_point_cal.v
+set_global_assignment -name VERILOG_FILE Matching_point_cal_tb.v
+set_global_assignment -name VERILOG_FILE sram_controllor_tb.v
+set_global_assignment -name VERILOG_FILE score_cal_point_buffer.v
+set_global_assignment -name VERILOG_FILE score_cal_point_buffer_tb.v
+set_global_assignment -name VERILOG_FILE sort_5.v
+set_global_assignment -name VERILOG_FILE shift_reg.v
+set_global_assignment -name VERILOG_FILE state_view.v
+set_global_assignment -name VERILOG_FILE ram_control_tb.v
+set_global_assignment -name VERILOG_FILE control_unit_tb.v
+set_global_assignment -name VERILOG_FILE top_module_tb.v
+set_global_assignment -name EDA_TEST_BENCH_NAME atan_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id atan_tb
+set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "1 s" -section_id atan_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME atan_tb -section_id atan_tb
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_instance_assignment -name VIRTUAL_PIN ON -to candidate[1023..0]
+set_instance_assignment -name VIRTUAL_PIN ON -to index_sorted[895..0]
+set_instance_assignment -name VIRTUAL_PIN ON -to sorted[1023..0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to value[15]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to value[14]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to value[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to value[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to value[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to value[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to value[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to value[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to value[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to value[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to value[11]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to value[12]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to value[13]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to value[10]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to value[9]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to value[8]
+set_global_assignment -name EDA_TEST_BENCH_FILE sqrt_tb.v -section_id sqrt_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE LUT_tb.v -section_id LUT_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE reverse_tb.v -section_id reverse_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE trigonometric_tb.v -section_id trigonometric_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE tb.v -section_id tb
+set_global_assignment -name EDA_TEST_BENCH_FILE section_tb.v -section_id section_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE boundary_tb.v -section_id boundary_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE iris_center_tb.v -section_id iris_center_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE memory_tb.v -section_id memory_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE compare_tb.v -section_id compare_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE state_tb.v -section_id state_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE Matching_point_cal_tb.v -section_id Matching_point_cal_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE sram_controllor_tb.v -section_id sram_controllor_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE score_cal_point_buffer_tb.v -section_id score_cal_point_buffer_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE sort_tb.v -section_id sort_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE score_cal_tb.v -section_id score_cal_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE ram_control_tb.v -section_id ram_control_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE control_unit_tb.v -section_id control_unit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE top_module_tb.v -section_id top_module_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE new_point_tb.v -section_id new_point_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE atan_tb.v -section_id atan_tb
+set_global_assignment -name VERILOG_FILE debounce_sw.v
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
