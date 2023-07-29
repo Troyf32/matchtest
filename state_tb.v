@@ -31,6 +31,7 @@ assign theta_max = state_tb.ss.theta_max;
 assign phi_min = state_tb.ss.phi_min;
 assign phi_max = state_tb.ss.phi_max;
 assign stage_trigger_d = state_tb.ss.stage_trigger_d;
+assign stage = state_tb.ss.stage;
 
 always#10 clk = ~clk;
 initial
@@ -62,14 +63,14 @@ state_machine ss(.clk(clk),
 				     .rst(rst),
 				     .start(start),
 				     .sorted_rdy(sorted_rdy),
-				     .stage(stage),
 				     .candidate_angle_buffer(candidate_angle_buffer),
-					  .buffer(buffer),
 					  .theta(theta),
 					  .phi(phi),
 					  .alpha(alpha),
 					  .score_alpha_num(score_alpha_num),
 					  .compare_num(compare_num),
 					  .stage_trigger(stage_trigger),
-					  .state_trigger(state_trigger));					  
+					  .if_last_angle(if_last_angle),
+					  .if_final_angle(if_final_angle));
+				  
 endmodule
